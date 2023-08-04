@@ -28,3 +28,10 @@ I also included a set of 4 example csv documents for testing/observation.
     - Example_3.csv is the same as Example_2.csv, except it contains missing data
     - Example_4.csv is the same as Example_2.csv, but has more variation in trading times
       for better visualization with the graphing functionality
+
+Key for UI:
+
+    - (e): Evaluates a new CSV file from the inputted path
+    - (g): Generates a graph from an inputted ticker. Data is pulled from the last evaluated CSV file
+    - (p): Prints a more comprehensive set of data for an inputted ticker
+    - (q): Quits the program
