@@ -107,7 +107,8 @@ def evaluate_csv(path: str) -> dict:
     # unique_tickers = np.unique(test.loc[:, 'ticker'].tolist())
 
     # Find the unique tickers substantially faster than np.unique (according to pandas)
-    unique_tickers = sorted(pd.unique(test.iloc[:, 1]))
+    unique_tickers = pd.unique(test.iloc[:, 1])
+    unique_tickers.sort()
 
     # print(f'{unique_tickers}\n')
 
