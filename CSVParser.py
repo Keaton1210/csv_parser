@@ -4,6 +4,7 @@ Project: Test CSV Reader
 """
 
 # Imports
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -69,24 +70,34 @@ class Instrument:
 
         plt.show()
 
-    def print_summary(self) -> None:
+    def print_summary(self) -> str:
 
-        print(f'[{self.ticker_name}] '
-              f'Max Price: {self.max_price}, '
-              f'Min Price: {self.min_price}, '
-              f'Unweighted Average Price: {self.avg_price}, '
-              f'Total Volume Traded: {self.tot_volume}')
+        msg = f'[{self.ticker_name}] 'f'Max Price: {self.max_price}, '\
+            f'Min Price: {self.min_price}, Unweighted Average Price: {self.avg_price}, '\
+            f'Total Volume Traded: {self.tot_volume}\n'
 
-    def print_summary_ext(self) -> None:
+        # print(msg)
+        return msg
 
-        print(f'[{self.ticker_name}] \n'
-              f'    Total # of Trades: {self.num_trades}, \n'
-              f'    Max Price: {self.max_price}, \n'
-              f'    Min Price: {self.min_price}, \n'
-              f'    Unweighted Average Price: {self.avg_price}, \n'
-              f'    Weighted Average Price: {self.wavg_price}, \n'
-              f'    Total Volume Traded: {self.tot_volume}, \n'
-              f'    Avg Volume per Trade: {self.avg_volume_per_trade} \n')
+    def print_summary_ext(self) -> str:
+
+        msg = (f'[{self.ticker_name}] \nTotal # of Trades: {self.num_trades}, '
+               f'\nMax Price: {self.max_price}, \nMin Price: {self.min_price}, '
+               f'\nUnweighted Average Price: {self.avg_price}, '
+               f'\nWeighted Average Price: {self.wavg_price}, '
+               f'\nTotal Volume Traded: {self.tot_volume}, '
+               f'\nAvg Volume per Trade: {self.avg_volume_per_trade} \n')
+
+        # print(f'[{self.ticker_name}] \n'
+        #       f'    Total # of Trades: {self.num_trades}, \n'
+        #       f'    Max Price: {self.max_price}, \n'
+        #       f'    Min Price: {self.min_price}, \n'
+        #       f'    Unweighted Average Price: {self.avg_price}, \n'
+        #       f'    Weighted Average Price: {self.wavg_price}, \n'
+        #       f'    Total Volume Traded: {self.tot_volume}, \n'
+        #       f'    Avg Volume per Trade: {self.avg_volume_per_trade} \n')
+
+        return msg
 
 
 def evaluate_csv(path: str) -> dict:
@@ -134,6 +145,9 @@ def evaluate_csv(path: str) -> dict:
 
     tick_index_frame: pd.DataFrame = test.set_index(list(test.columns[[1]]))
 
+    # Open a new file to write the data to
+    f = open(f'{os.getcwd()}/ticker_data.txt', 'w')
+
     for ticker in unique_tickers:
 
         # Collect all rows of data associated with current ticker
@@ -143,10 +157,12 @@ def evaluate_csv(path: str) -> dict:
         ticker_data[ticker] = Instrument(ticker, curr_frame, path)
 
     for key in ticker_data.keys():
-        ticker_data[key].print_summary()
-        # ticker_data[key].print_summary_ext()
+        data = ticker_data[key].print_summary()
+        # data = ticker_data[key].print_summary_ext()
+        f.write(data)
 
     logging.info(f'INFO | Successfully parsed {path}.')
+    f.close()
     return ticker_data
 
 

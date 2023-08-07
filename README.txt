@@ -8,7 +8,7 @@ Evaluates the target csv and processes the trade data into the following:
     - Unweighted Average Price of Trades
     - Total Volume Traded
 
-    ...for each ticker found within the CSV.
+    ...for each ticker found within the CSV. This data is outputted in the ticker_data.txt file.
 
     Optionally, you can also process the following:
 

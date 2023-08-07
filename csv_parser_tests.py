@@ -42,6 +42,11 @@ class ParserTests(unittest.TestCase):
         self.assertEqual(1161.425, data['aaa'].wavg_price)
         self.assertEqual(13.333333333333334, data['aaa'].avg_volume_per_trade)
 
+    def test_writes_to_file(self):
+
+        evaluate_csv('Example.csv')
+
+        self.assertFalse(os.path.getsize('ticker_data.txt') == 0)
 
 
 if __name__ == '__main__':
