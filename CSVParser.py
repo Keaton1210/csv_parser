@@ -70,16 +70,18 @@ class Instrument:
 
         plt.show()
 
-    def print_summary(self) -> str:
+    def print_summary(self, to_print=False) -> str:
 
         msg = f'[{self.ticker_name}] 'f'Max Price: {self.max_price}, '\
             f'Min Price: {self.min_price}, Unweighted Average Price: {self.avg_price}, '\
             f'Total Volume Traded: {self.tot_volume}\n'
 
-        # print(msg)
+        if to_print:
+            print(msg)
+
         return msg
 
-    def print_summary_ext(self) -> str:
+    def print_summary_ext(self, to_print=False) -> str:
 
         msg = (f'[{self.ticker_name}] \nTotal # of Trades: {self.num_trades}, '
                f'\nMax Price: {self.max_price}, \nMin Price: {self.min_price}, '
@@ -88,14 +90,15 @@ class Instrument:
                f'\nTotal Volume Traded: {self.tot_volume}, '
                f'\nAvg Volume per Trade: {self.avg_volume_per_trade} \n')
 
-        # print(f'[{self.ticker_name}] \n'
-        #       f'    Total # of Trades: {self.num_trades}, \n'
-        #       f'    Max Price: {self.max_price}, \n'
-        #       f'    Min Price: {self.min_price}, \n'
-        #       f'    Unweighted Average Price: {self.avg_price}, \n'
-        #       f'    Weighted Average Price: {self.wavg_price}, \n'
-        #       f'    Total Volume Traded: {self.tot_volume}, \n'
-        #       f'    Avg Volume per Trade: {self.avg_volume_per_trade} \n')
+        if to_print:
+            print(f'[{self.ticker_name}] \n'
+                  f'    Total # of Trades: {self.num_trades}, \n'
+                  f'    Max Price: {self.max_price}, \n'
+                  f'    Min Price: {self.min_price}, \n'
+                  f'    Unweighted Average Price: {self.avg_price}, \n'
+                  f'    Weighted Average Price: {self.wavg_price}, \n'
+                  f'    Total Volume Traded: {self.tot_volume}, \n'
+                  f'    Avg Volume per Trade: {self.avg_volume_per_trade} \n')
 
         return msg
 
@@ -209,7 +212,7 @@ if __name__ == '__main__':
             elif response == 'p':
                 ticker = input("Enter Ticker: ")
                 try:
-                    ticker_data[ticker].print_summary_ext()
+                    ticker_data[ticker].print_summary_ext(to_print=True)
                 except KeyError:
                     print("Ticker does not exist within the data")
                 except TypeError:

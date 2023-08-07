@@ -1,0 +1,7 @@
+2023-08-07 12:16:56,091 | INFO | Program Terminated Externally.
+v...
+2023-08-07 12:16:23,607 | INFO | Successfully parsed Example_4.csv.
+2023-08-07 12:16:30,875 | INFO | Generated graph for [aaa] from Example_4.csv
+2023-08-07 12:16:35,382 | INFO | Attempting to parse Example.csv...
+2023-08-07 12:16:36,219 | INFO | Successfully parsed Example.csv.
+2023-08-07 12:16:46,254 | INFO | Quitting.
