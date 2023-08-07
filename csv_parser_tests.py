@@ -1,6 +1,6 @@
 import os.path
 import unittest
-from CSVParser import evaluate_csv
+from csv_parser import evaluate_csv
 
 
 class ParserTests(unittest.TestCase):
